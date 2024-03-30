@@ -1,5 +1,6 @@
-network_structure: [784, 16, 16, 10]
-activation_functions: ['relu', 'relu', 'sigmoid']
-learning_rate: 0.1
-mini_batch_size: 50
-epochs: 30
+network_structure: [784, 64, 16, 4, 8, 10]
+#activation_functions: ['relu', 'relu', 'relu', 'relu', 'sigmoid']
+activation_functions: ['sigmoid', 'sigmoid', 'sigmoid', 'sigmoid', 'sigmoid']
+learning_rate: 3
+mini_batch_size: 30
+epochs: 90

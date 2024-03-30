@@ -24,4 +24,4 @@ t0 = timer()
 net.SGD(training_data, config['epochs'], config['mini_batch_size'], config['learning_rate'], test_data=test_data)
 
 print("Done Training and Testing Ex Machina.")
-print("Trainging time = {:0.1f}".format(timeit() - t0) + " seconds.")
+print("Trainging time = {:0.1f}".format(timer() - t0) + " seconds.")
