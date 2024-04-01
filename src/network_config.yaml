@@ -1,5 +1,5 @@
 network_structure: [784, 128, 64, 32, 10]
-activation_functions: ['sigmoid', 'sigmoid', 'relu', 'sigmoid']
+activation_functions: ['sigmoid', 'sigmoid', 'sigmoid', 'sigmoid']
 learning_rate: 0.5
-mini_batch_size: 10
+mini_batch_size: 50
 epochs: 30

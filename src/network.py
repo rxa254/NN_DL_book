@@ -1,6 +1,7 @@
 import numpy as np
 import random
 from tqdm import tqdm
+import asciichartpy
 
 class ActivationFunction:
     def __init__(self, name):
@@ -51,9 +52,9 @@ class Network:
         return a
 
     def SGD(self, training_data, epochs, mini_batch_size, eta, test_data=None):
-        if test_data:
-            n_test = len(test_data)
+        if test_data: n_test = len(test_data)
         n = len(training_data)
+        loss_history = []  # To store loss after each epoch
 
         with tqdm(range(epochs), desc="Training Progress") as t:
             for j in t:
@@ -66,6 +67,11 @@ class Network:
                 if test_data:
                     evaluation_result = self.evaluate(test_data)
                     t.write(f"Epoch {j + 1}: {evaluation_result} / {n_test}")
+                    loss_history.append(n_test - evaluation_result)  # Assuming loss is the number of incorrect predictions
+
+        # Plotting the loss history as an ASCII chart
+        print("Loss Function vs. Epoch")
+        print(asciichartpy.plot(loss_history, {'height': 10}))
 
     def update_mini_batch(self, mini_batch, eta):
         nabla_b = [np.zeros(b.shape) for b in self.biases]
@@ -108,4 +114,10 @@ class Network:
         return sum(int(x == y) for (x, y) in test_results)
 
     def cost_derivative(self, output_activations, y):
+        """
+        Compute the derivative of the cost function.
+
+        err = 1/2 * (output_activations - y )**2
+        derr/doutput = (output - y)
+        """
         return (output_activations - y)
